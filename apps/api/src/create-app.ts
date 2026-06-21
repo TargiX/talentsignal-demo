@@ -2,6 +2,7 @@ import { ValidationPipe } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import type { INestApplication } from "@nestjs/common";
+import type { Request, Response } from "express";
 
 export function configureApp(app: INestApplication) {
   const config = app.get(ConfigService);
@@ -33,5 +34,48 @@ export function configureApp(app: INestApplication) {
       .addBearerAuth()
       .build()
   );
-  SwaggerModule.setup("docs", app, document);
+
+  const server = app.getHttpAdapter().getInstance();
+  server.get(["/docs-json", "/openapi.json"], (_request: Request, response: Response) => {
+    response.json(document);
+  });
+  server.get("/docs", (_request: Request, response: Response) => {
+    response.type("html").send(renderSwaggerHtml());
+  });
+}
+
+function renderSwaggerHtml() {
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TalentSignal API Docs</title>
+    <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5/swagger-ui.css" />
+    <style>
+      body { margin: 0; background: #f8faf9; }
+      .swagger-ui .topbar { display: none; }
+      .swagger-ui .info { margin: 32px 0; }
+    </style>
+  </head>
+  <body>
+    <div id="swagger-ui"></div>
+    <script src="https://unpkg.com/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
+    <script src="https://unpkg.com/swagger-ui-dist@5/swagger-ui-standalone-preset.js"></script>
+    <script>
+      window.addEventListener("load", function () {
+        window.ui = SwaggerUIBundle({
+          url: "/docs-json",
+          dom_id: "#swagger-ui",
+          deepLinking: true,
+          presets: [
+            SwaggerUIBundle.presets.apis,
+            SwaggerUIStandalonePreset
+          ],
+          layout: "StandaloneLayout"
+        });
+      });
+    </script>
+  </body>
+</html>`;
 }
