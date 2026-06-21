@@ -1,0 +1,19 @@
+{
+  "name": "charforge-art",
+  "private": true,
+  "packageManager": "pnpm@11.0.7",
+  "scripts": {
+    "dev": "pnpm --parallel --filter @charforge/api --filter @charforge/web dev",
+    "dev:api": "pnpm --filter @charforge/api dev",
+    "dev:web": "pnpm --filter @charforge/web dev",
+    "build": "pnpm --filter @charforge/api build && pnpm --filter @charforge/web build",
+    "lint": "pnpm --filter @charforge/api lint && pnpm --filter @charforge/web lint",
+    "typecheck": "pnpm --filter @charforge/api typecheck && pnpm --filter @charforge/web typecheck"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.30.0",
+    "eslint": "^9.30.0",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.35.0"
+  }
+}

@@ -1,0 +1,15 @@
+packages:
+  - "apps/*"
+
+onlyBuiltDependencies:
+  - "@parcel/watcher"
+  - "esbuild"
+  - "vue-demi"
+
+ignoredBuiltDependencies:
+  - "@scarf/scarf"
+allowBuilds:
+  '@parcel/watcher': true
+  '@scarf/scarf': false
+  esbuild: true
+  vue-demi: true

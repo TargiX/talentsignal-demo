@@ -1,0 +1,124 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn-vue/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  color-scheme: light;
+  --background: oklch(0.992 0.002 145);
+  --foreground: oklch(0.17 0.012 150);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.17 0.012 150);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.17 0.012 150);
+  --primary: oklch(0.62 0.16 155);
+  --primary-foreground: oklch(0.985 0.003 145);
+  --secondary: oklch(0.965 0.006 145);
+  --secondary-foreground: oklch(0.24 0.014 150);
+  --muted: oklch(0.965 0.006 145);
+  --muted-foreground: oklch(0.49 0.015 150);
+  --accent: oklch(0.965 0.035 154);
+  --accent-foreground: oklch(0.25 0.055 154);
+  --destructive: oklch(0.61 0.18 26);
+  --border: oklch(0.91 0.009 145);
+  --input: oklch(0.9 0.011 145);
+  --ring: oklch(0.64 0.13 154);
+  --chart-1: oklch(0.62 0.12 154);
+  --chart-2: oklch(0.66 0.15 38);
+  --chart-3: oklch(0.58 0.15 268);
+  --chart-4: oklch(0.7 0.12 205);
+  --chart-5: oklch(0.55 0.12 330);
+  --radius: 0.5rem;
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.17 0.012 150);
+  --sidebar-primary: oklch(0.72 0.13 154);
+  --sidebar-primary-foreground: oklch(0.16 0.012 150);
+  --sidebar-accent: oklch(0.965 0.035 154);
+  --sidebar-accent-foreground: oklch(0.36 0.12 154);
+  --sidebar-border: oklch(0.91 0.009 145);
+  --sidebar-ring: oklch(0.72 0.13 154);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--background);
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  background: #fbfcfb;
+  color: var(--foreground);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+#__nuxt {
+  min-height: 100vh;
+}
+
+.compat-donut {
+  --score: 331deg;
+  display: grid;
+  width: 128px;
+  height: 128px;
+  place-items: center;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at center, #fff 0 54%, transparent 55%),
+    conic-gradient(#10a66a var(--score), #e6ece9 0);
+  box-shadow: inset 0 0 0 1px rgb(16 166 106 / 0.08);
+}
+
+.compat-donut span {
+  font-size: 1.625rem;
+  font-weight: 700;
+  letter-spacing: 0;
+}
