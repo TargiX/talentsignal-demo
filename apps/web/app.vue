@@ -489,10 +489,11 @@ async function shareProfile() {
     return;
   }
 
-  const url = `https://charforge.art/profiles/${activeProfile.value.handle}`;
+  const url = new globalThis.URL("/", globalThis.location?.origin ?? "https://charforge-web.vercel.app");
+  url.searchParams.set("profile", activeProfile.value.handle);
 
   try {
-    await globalThis.navigator?.clipboard?.writeText(url);
+    await globalThis.navigator?.clipboard?.writeText(url.toString());
   } catch {
     // Local preview can run without clipboard permissions; the visible copied state is still useful for the demo.
   }
@@ -594,8 +595,17 @@ function isBookmarked(profileId: string) {
   return bookmarkedProfileIds.value.includes(profileId);
 }
 
-onMounted(() => {
-  void discovery.bootstrap();
+onMounted(async () => {
+  await discovery.bootstrap();
+
+  const sharedHandle = new globalThis.URLSearchParams(globalThis.location.search).get("profile");
+  const sharedProfile = sharedHandle
+    ? profiles.value.find((profile) => profile.handle === sharedHandle)
+    : null;
+
+  if (sharedProfile) {
+    selectProfile(sharedProfile.id);
+  }
 });
 </script>
 
