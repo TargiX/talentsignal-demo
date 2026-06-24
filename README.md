@@ -1,14 +1,14 @@
 # TalentSignal
 
-TalentSignal is a focused full-stack demo for an HR/social discovery product at `charforge.art`.
+TalentSignal is a focused full-stack demo for an HR/social discovery product at `talentsignal.us`.
 
 It is intentionally built around the hiring brief: NuxtJS/Vue on the frontend, NestJS on the backend, MySQL persistence, plus adapters for Redis, DynamoDB, and OpenSearch. The app runs without the external services so it is easy to review, but the integration boundaries are real and ready for local Docker services.
 
 ## Live demo
 
-- Web app: https://charforge-web.vercel.app
-- API docs: https://charforge-api.vercel.app/docs
-- API health: https://charforge-api.vercel.app/health
+- Web app: https://talentsignal.us
+- API docs: https://api.talentsignal.us/docs
+- API health: https://api.talentsignal.us/api/health
 
 ## Why this works for the client
 
@@ -73,7 +73,7 @@ The app is intentionally demo-friendly: it works with seeded fallback data, but 
 - Working filters, top search, selected profile state, profile tabs, empty states, API-backed message flow, signal flow, bookmark state, moderation review flow, sidebar workspace navigation, and realtime activity updates.
 - NestJS API with modules, controllers, DTO validation, guard, interceptor, Swagger, and infra adapters.
 - Async-team friendly code organization and setup instructions.
-- Domain-ready deployment plan for `charforge.art` and `api.charforge.art`.
+- Domain-ready deployment plan for `talentsignal.us` and `api.talentsignal.us`.
 
 Optional services:
 
@@ -85,11 +85,21 @@ The API falls back to seeded data if MySQL or search services are not running, w
 
 ## Domain plan
 
-`charforge.art` can stay as the owned portfolio/demo domain while the product brand reads as TalentSignal. Recommended deployment split:
+`talentsignal.us` is the canonical portfolio/demo domain for the TalentSignal product slice. Recommended deployment split:
 
-- `charforge.art` -> Nuxt frontend
-- `api.charforge.art` -> NestJS API
-- `docs.charforge.art` or `api.charforge.art/docs` -> Swagger docs
+- `talentsignal.us` -> Nuxt frontend
+- `www.talentsignal.us` -> Nuxt frontend
+- `api.talentsignal.us` -> NestJS API and Swagger docs at `/docs`
+
+DNS records for the current Namecheap registrar DNS setup:
+
+```text
+A      @     76.76.21.21
+A      www   76.76.21.21
+A      api   76.76.21.21
+```
+
+The web build uses `https://api.talentsignal.us` as the primary API host and temporarily falls back to `https://api.charforge.art` while registrar DNS is still propagating.
 
 ## Proposal answers
 

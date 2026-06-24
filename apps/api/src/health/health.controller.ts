@@ -18,7 +18,7 @@ export class HealthController {
     return {
       ok: true,
       app: "talentsignal-api",
-      domain: this.config.get("APP_ORIGIN") ?? "https://charforge.art",
+      domain: this.config.get("APP_ORIGIN") ?? "https://talentsignal.us",
       mysql: this.database.isConnected ? "connected" : "seeded-fallback",
       redis: this.config.get("REDIS_URL") ? "configured" : "not-configured",
       dynamodb: this.config.get("DYNAMODB_ENDPOINT") ? "configured" : "not-configured",

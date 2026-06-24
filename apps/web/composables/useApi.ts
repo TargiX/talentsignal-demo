@@ -77,14 +77,27 @@ export type ModerationReviewResponse = {
 export function useApi() {
   const config = useRuntimeConfig();
 
-  const request = <T>(path: string, options: Parameters<typeof $fetch<T>>[1] = {}) => {
-    return $fetch<T>(`${config.public.apiBase}/api${path}`, {
-      ...options,
-      headers: {
-        Authorization: "Bearer demo-token",
-        ...options.headers
+  const request = async <T>(path: string, options: Parameters<typeof $fetch<T>>[1] = {}) => {
+    const primaryBase = String(config.public.apiBase || "").replace(/\/$/, "");
+    const fallbackBase = "https://api.charforge.art";
+    const bases = [primaryBase, fallbackBase].filter((base, index, items) => base && items.indexOf(base) === index);
+    let lastError: unknown;
+
+    for (const base of bases) {
+      try {
+        return await $fetch<T>(`${base}/api${path}`, {
+          ...options,
+          headers: {
+            Authorization: "Bearer demo-token",
+            ...options.headers
+          }
+        });
+      } catch (error) {
+        lastError = error;
       }
-    });
+    }
+
+    throw lastError;
   };
 
   return { request };

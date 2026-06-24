@@ -489,7 +489,7 @@ async function shareProfile() {
     return;
   }
 
-  const url = new globalThis.URL("/", globalThis.location?.origin ?? "https://charforge-web.vercel.app");
+  const url = new globalThis.URL("/", globalThis.location?.origin ?? "https://talentsignal.us");
   url.searchParams.set("profile", activeProfile.value.handle);
 
   try {

@@ -6,11 +6,18 @@ import type { Request, Response } from "express";
 
 export function configureApp(app: INestApplication) {
   const config = app.get(ConfigService);
-  const origin = config.get<string>("APP_ORIGIN") ?? "http://localhost:3000";
+  const configuredOrigins = (config.get<string>("APP_ORIGIN") ?? "http://localhost:3000")
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean);
 
   app.enableCors({
     origin: [
-      origin,
+      ...configuredOrigins,
+      "https://talentsignal.us",
+      "https://www.talentsignal.us",
+      "https://charforge.art",
+      "https://www.charforge.art",
       /^https:\/\/.*\.vercel\.app$/,
       /^http:\/\/(localhost|127\.0\.0\.1):\d+$/
     ],

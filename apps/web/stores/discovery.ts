@@ -63,9 +63,7 @@ export const useDiscoveryStore = defineStore("discovery", () => {
   }
 
   async function loadHealth() {
-    apiStatus.value = await $fetch<ApiStatus>("/api/health", {
-      baseURL: useRuntimeConfig().public.apiBase
-    });
+    apiStatus.value = await request<ApiStatus>("/health");
   }
 
   async function loadModeration() {
