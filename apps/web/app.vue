@@ -1343,7 +1343,7 @@ onMounted(async () => {
                 <div class="flex items-center justify-between gap-4">
                   <div>
                     <h2 class="text-sm font-semibold">profile.signal_sent</h2>
-                    <p class="mt-1 text-xs text-[#64706c]">POST https://api.talentsignal.app/webhooks/signals</p>
+                    <p class="mt-1 text-xs text-[#64706c]">POST https://api.talentsignal.us/webhooks/signals</p>
                   </div>
                   <Badge class="rounded-md bg-[#e9f8f1] text-[#07945c]">{{ settingsState.webhooksEnabled ? "Enabled" : "Paused" }}</Badge>
                 </div>
